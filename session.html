@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Session — Qupid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="session.css" />
+</head>
+<body>
+
+  <div id="curtain"></div>
+
+  <!-- HEADER -->
+  <header>
+    <span class="q-count" id="q-count">Question 1</span>
+    <div class="level-pill">
+      <div class="level-dot"></div>
+      <span class="level-name-label" id="level-label">Casual</span>
+    </div>
+  </header>
+
+  <!-- QUESTION CARD -->
+  <div class="q-wrap">
+    <div class="q-card">
+      <p class="q-text" id="q-text">Loading…</p>
+    </div>
+  </div>
+
+  <!-- STATE A: WRITING -->
+  <div id="state-writing">
+    <div class="write-hint">
+      <span class="write-hint-icon" aria-hidden="true">📵</span>
+      <p><strong>Put the phone face-down.</strong> Each of you writes your answer on a sticky note privately — don't peek.</p>
+    </div>
+    <button class="btn-done" onclick="startDiscussion()">We've both finished writing →</button>
+    <button class="btn-skip" onclick="skipQuestion()">Skip this question</button>
+  </div>
+
+  <!-- STATE B: DISCUSSING -->
+  <div id="state-discussing">
+    <div class="timer-wrap" role="timer" aria-live="polite" aria-label="Discussion timer">
+      <svg viewBox="0 0 160 160">
+        <circle class="timer-bg-ring" cx="80" cy="80" r="70"/>
+        <circle class="timer-ring" id="timer-ring"
+                cx="80" cy="80" r="70"
+                stroke-dasharray="439.82"
+                stroke-dashoffset="0"/>
+      </svg>
+      <div class="timer-center">
+        <span class="timer-digits" id="timer-digits">3:00</span>
+        <span class="timer-label">discuss</span>
+      </div>
+    </div>
+
+    <p class="discuss-hint" id="discuss-hint">Talk about what you each wrote. Listen as much as you speak.</p>
+
+    <div class="discuss-btns">
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next question →</button>
+      <button class="btn-more" id="btn-more" onclick="addTime()">Need more time  +1 min</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    /* ─── QUESTION BANKS ─── */
+    const questions = {
+      casual: [
+  "What's your most irrational food opinion — the one you'll defend to the death?",
+  "What's a movie or show everyone loves that you think is genuinely overrated?",
+  "If your texting style was described by someone who didn't know you, what would they say?",
+  "What's something you own that you could never throw away, even though you probably should?",
+  "What's a skill you've been meaning to learn for years and keep finding excuses not to?",
+  "What's your most unpopular opinion about relationships in general?",
+  "What's something other people find stressful that secretly doesn't bother you at all?",
+  "What's the most recent lie you told — even a small one?",
+  "What's a subject you know a weird, specific amount about for no real reason?",
+  "What's the most embarrassing thing you still find funny?",
+  "Who was your first real villain — a teacher, a neighbour, a kid at school — and what did they do?",
+  "What's something you've done that you'd never admit to in a group setting?",
+],
+      personal: [
+  "What's something you've always wanted someone to ask you about — but nobody ever does?",
+  "Is there a person from your past you think about more than makes sense? Why?",
+  "What's the gap between how you think people see you and how you actually are?",
+  "What's something you've forgiven someone for that you maybe shouldn't have?",
+  "When do you feel most out of place — even among people who are supposed to be your people?",
+  "What's the story you tell about your own life that you're no longer sure is true?",
+  "What's a choice you made to make someone else comfortable that cost you something?",
+  "What does loneliness feel like for you — is it a situation, a feeling, a specific time of day?",
+  "What's something you're genuinely ashamed of — not guilty, ashamed?",
+  "What's a version of success you chased that turned out to be someone else's idea?",
+  "What's one thing you were wrong about for a very long time?",
+  "What would your life look like if you stopped performing the version of yourself you show most people?",
+],
+      veryPersonal: [
+  "What's something you've never said to me that you maybe should?",
+  "Is there a way I've let you down that we've never talked about?",
+  "What do you most need from me right now that you haven't known how to ask for?",
+  "What's a fear you have about us — about where this goes, or doesn't?",
+  "When have you felt most misunderstood by me?",
+  "What's something I do that makes you feel genuinely seen?",
+  "What's a part of yourself you've been hiding, even here, even with me?",
+  "If you could change one thing about how we communicate, what would it be?",
+  "What's something you believe about love that you're afraid I don't share?",
+  "Have you ever started to say something to me and then stopped — what was it?",
+  "What are you most afraid I'll think of you if you're completely honest?",
+  "What would it mean to you if this — right now, this conversation — actually changed something?",
+]
+    };
+
+    /* ─── LEVEL CONFIGS ─── */
+    const levels = {
+      casual:      { label: 'Casual',        duration: 120, vars: { bg:'#F2F1EE', dot:'#B8B6B1', border:'#D0CEC9', text:'#3A3835' } },
+      personal:    { label: 'Personal',      duration: 240, vars: { bg:'#E6F3FB', dot:'#7AB3D0', border:'#A8CDE0', text:'#18425E' } },
+      veryPersonal:{ label: 'Very personal', duration: 360, vars: { bg:'#EDE5EF', dot:'#7A5C7E', border:'#B094B4', text:'#3D1F42' } },
+    };
+
+    /* ─── STATE ─── */
+    let questionIndex = 0;
+    let totalAnswered = 0;
+    let levelCounts   = { casual: 0, personal: 0, veryPersonal: 0 };
+    let timerSeconds  = 0;
+    let timerFull     = 0;
+    let timerInterval = null;
+    let extraAdded    = 0;
+    const MAX_QUESTIONS = 10;
+
+    /* Build alternating shuffled sequence */
+    function buildSequence(n) {
+      const keys  = ['casual', 'personal', 'veryPersonal'];
+      const pools = {
+        casual:       [...questions.casual],
+        personal:     [...questions.personal],
+        veryPersonal: [...questions.veryPersonal],
+      };
+      for (const k of keys) pools[k].sort(() => Math.random() - 0.5);
+      const ptrs = { casual: 0, personal: 0, veryPersonal: 0 };
+      const seq  = [];
+      for (let i = 0; i < n; i++) {
+        const key = keys[i % keys.length];
+        seq.push({ level: key, text: pools[key][ptrs[key]++ % pools[key].length] });
+      }
+      return seq;
+    }
+
+    const sequence = buildSequence(MAX_QUESTIONS);
+
+    /* ─── APPLY LEVEL THEME ─── */
+    function applyLevel(key) {
+      const v    = levels[key].vars;
+      const root = document.documentElement;
+      root.style.setProperty('--lvl-bg',     v.bg);
+      root.style.setProperty('--lvl-dot',    v.dot);
+      root.style.setProperty('--lvl-border', v.border);
+      root.style.setProperty('--lvl-text',   v.text);
+      document.getElementById('level-label').textContent = levels[key].label;
+    }
+
+    /* ─── LOAD QUESTION ─── */
+    function loadQuestion() {
+      if (questionIndex >= MAX_QUESTIONS) {
+        sessionStorage.setItem('Qupid_answered',     totalAnswered);
+        sessionStorage.setItem('Qupid_level_counts', JSON.stringify(levelCounts));
+        navigate('end.html');
+        return;
+      }
+
+      const q   = sequence[questionIndex];
+      const qEl = document.getElementById('q-text');
+      const cEl = document.getElementById('q-count');
+
+      qEl.classList.add('fade');
+      setTimeout(() => {
+        applyLevel(q.level);
+        qEl.textContent = q.text;
+        cEl.textContent = 'Question ' + (questionIndex + 1) + ' of ' + MAX_QUESTIONS;
+        qEl.classList.remove('fade');
+        qEl.classList.add('card-enter');
+        setTimeout(() => qEl.classList.remove('card-enter'), 400);
+      }, 300);
+
+      document.getElementById('state-writing').style.display   = 'block';
+      document.getElementById('state-discussing').style.display = 'none';
+
+      clearInterval(timerInterval);
+      extraAdded = 0;
+    }
+
+    /* ─── SKIP ─── */
+    function skipQuestion() {
+      if (!confirm('Skip this question?')) return;
+      questionIndex++;
+      loadQuestion();
+    }
+
+    /* ─── START DISCUSSION ─── */
+    function startDiscussion() {
+      const key    = sequence[questionIndex].level;
+      timerFull    = levels[key].duration;
+      timerSeconds = timerFull;
+
+      levelCounts[key]++;
+      totalAnswered++;
+
+      document.getElementById('state-writing').style.display   = 'none';
+      const disc = document.getElementById('state-discussing');
+      disc.style.display = 'flex';
+
+      document.getElementById('btn-next').style.display  = 'none';
+      document.getElementById('btn-more').style.display  = 'block';
+      document.getElementById('btn-more').style.opacity  = '1';
+      document.getElementById('discuss-hint').textContent = 'Talk about what you each wrote. Listen as much as you speak.';
+
+      const digEl  = document.getElementById('timer-digits');
+      const ringEl = document.getElementById('timer-ring');
+      const circ   = 439.82;
+      digEl.classList.remove('done');
+
+      function tick() {
+        if (timerSeconds <= 0) {
+          clearInterval(timerInterval);
+          digEl.textContent = '0:00';
+          digEl.classList.add('done');
+          ringEl.style.strokeDashoffset = circ;
+          document.getElementById('btn-next').style.display = 'block';
+          document.getElementById('btn-more').style.display = 'none';
+          document.getElementById('discuss-hint').textContent = "Time's up. Take the next question whenever you're ready.";
+          if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+          return;
+        }
+        const m = Math.floor(timerSeconds / 60);
+        const s = timerSeconds % 60;
+        digEl.textContent = m + ':' + String(s).padStart(2, '0');
+        const elapsed = timerFull - timerSeconds;
+        ringEl.style.strokeDashoffset = (elapsed / timerFull) * circ;
+        timerSeconds--;
+      }
+
+      tick();
+      timerInterval = setInterval(tick, 1000);
+    }
+
+    /* ─── ADD TIME ─── */
+    function addTime() {
+      if (extraAdded >= 3) return;
+      timerSeconds += 60;
+      timerFull    += 60;
+      extraAdded++;
+      if (extraAdded >= 3) document.getElementById('btn-more').style.opacity = '0.4';
+    }
+
+    /* ─── NEXT QUESTION ─── */
+    function nextQuestion() {
+      clearInterval(timerInterval);
+      questionIndex++;
+      loadQuestion();
+    }
+
+    /* ─── INIT ─── */
+    loadQuestion();
+  </script>
+
+</body>
+</html>

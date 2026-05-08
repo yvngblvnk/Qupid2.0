@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>How It Works — Qupid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="instructions.css" />
+</head>
+<body>
+
+  <div id="curtain"></div>
+  <div id="prog"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">
+      <div class="dots" aria-hidden="true">
+        <div class="dot d-grey"></div>
+        <div class="dot d-blue"></div>
+        <div class="dot d-plum"></div>
+      </div>
+      <span>How it works</span>
+    </div>
+    <h1>Pen, paper,<br>and <em>presence.</em></h1>
+    <p>Qupid gives you the questions. You bring the sticky notes, a pen, and each other. The rest happens offline — in real life, between real people.</p>
+  </div>
+
+  <!-- WHAT YOU NEED -->
+  <div class="need-banner" role="note">
+    <div class="need-icon" aria-hidden="true">🗒️</div>
+    <p class="need-text">Before you start, grab <strong>sticky notes</strong> and a <strong>pen or two.</strong> The phone shows the questions — you answer them by hand, together.</p>
+  </div>
+
+  <!-- STEPS -->
+  <div class="section">
+    <p class="sec-label">The flow</p>
+    <div class="steps">
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">A question appears on screen</p>
+          <p class="step-desc">Both of you read the question together. The card's colour shows which level it is — casual, personal, or very personal.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">Put the phone down and write</p>
+          <p class="step-desc">Place the phone face-down. Each person writes their honest answer on their own sticky note — privately, without seeing what the other is writing.</p>
+          <div class="note-pair" aria-label="Two sticky notes being written privately">
+            <div class="sticky s1">
+              <p class="sticky-who">You</p>
+              <p class="sticky-content">When we drive with no destination and just talk…</p>
+            </div>
+            <div class="note-mid" aria-hidden="true">✍️</div>
+            <div class="sticky s2">
+              <p class="sticky-who">Them</p>
+              <p class="sticky-content">Quiet mornings before the day pulls us apart…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-title">Swap notes — read, don't react yet</p>
+          <p class="step-desc">Hand your sticky note to your partner and take theirs. Read it slowly. Sit with it for a moment before you speak.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-title">Pick up the phone — start the timer</p>
+          <p class="step-desc">Tap "Start discussion" and talk about what you both wrote. The timer keeps the conversation focused — when it ends, the next question is up.</p>
+          <div class="timer-demo" role="img" aria-label="Discussion timer at 2 minutes 34 seconds">
+            <svg width="88" height="88" viewBox="0 0 88 88">
+              <circle cx="44" cy="44" r="36" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/>
+              <circle cx="44" cy="44" r="36" fill="none" stroke="#7A5C7E" stroke-width="4"
+                      stroke-dasharray="226.2" stroke-dashoffset="70"
+                      stroke-linecap="round" transform="rotate(-90 44 44)"/>
+              <text x="44" y="51" text-anchor="middle"
+                    font-family="Playfair Display, serif"
+                    font-size="21" fill="#fff">2:34</text>
+            </svg>
+            <p class="timer-sub">Discussion time</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p class="step-title">Next question appears automatically</p>
+          <p class="step-desc">Once the timer is up, the next question loads. Hold onto your notes — by the end you'll have a paper record of this whole conversation.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LEVEL CARDS -->
+  <div class="section">
+    <p class="sec-label">Question levels</p>
+    <div class="levels">
+      <div class="level-card lg">
+        <div class="level-swatch ls-grey" aria-hidden="true"></div>
+        <div>
+          <p class="level-name ng">Casual</p>
+          <p class="level-desc dg">Light, fun prompts. Everyday preferences and playful opinions. A comfortable warm-up.</p>
+        </div>
+      </div>
+      <div class="level-card lb">
+        <div class="level-swatch ls-blue" aria-hidden="true"></div>
+        <div>
+          <p class="level-name nb">Personal</p>
+          <p class="level-desc db">Reflective questions about values, memories, and how you see the world.</p>
+        </div>
+      </div>
+      <div class="level-card lp">
+        <div class="level-swatch ls-plum" aria-hidden="true"></div>
+        <div>
+          <p class="level-name np">Very personal</p>
+          <p class="level-desc dp">Deep, vulnerable prompts about fears, hopes, and what truly matters. Go gently.</p>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-muted);margin-top:12px;line-height:1.65;font-weight:300;padding:0 2px;">
+      Levels rotate in a random order — you won't always know the depth of what's coming next.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TIPS -->
+  <div class="section">
+    <p class="sec-label">Ground rules</p>
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-icon" aria-hidden="true">🤫</div>
+        <p class="tip-text"><strong>Write in secret.</strong> Phone goes face-down while you write. No peeking at each other's note until the swap.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon" aria-hidden="true">⏩</div>
+        <p class="tip-text"><strong>Skipping is allowed.</strong> Either person can pass on any question, no explanation needed.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon" aria-hidden="true">🕊️</div>
+        <p class="tip-text"><strong>No wrong answers.</strong> No scores, no judgement — just two people being honest.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon" aria-hidden="true">📌</div>
+        <p class="tip-text"><strong>Keep the notes.</strong> They're a paper record of this moment. You may want to read them again someday.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <p class="cta-note">Make sure you both have sticky notes and a pen before you begin.</p>
+
+    <input type="checkbox" id="agree" />
+    <label for="agree" class="check-label">
+      <div class="check-box" aria-hidden="true">
+        <svg viewBox="0 0 13 13" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="2,7 5.5,10.5 11,3.5"/>
+        </svg>
+      </div>
+      <span class="check-text"><strong>We've got sticky notes and we're ready.</strong> We both understand how this works.</span>
+    </label>
+
+    <button class="cta-btn" id="cta" disabled onclick="handleStart()">
+      Begin our session ✦
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const d = document.documentElement;
+      document.getElementById('prog').style.width =
+        (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+    }, { passive: true });
+
+    const agree = document.getElementById('agree');
+    const btn   = document.getElementById('cta');
+
+    agree.addEventListener('change', () => {
+      btn.disabled = !agree.checked;
+      btn.classList.toggle('active', agree.checked);
+    });
+
+    function handleStart() {
+      if (!agree.checked) return;
+      btn.textContent = 'Setting up your session…';
+      btn.disabled = true;
+      setTimeout(() => navigate('session.html'), 400);
+    }
+  </script>
+
+</body>
+</html>

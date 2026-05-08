@@ -1,0 +1,208 @@
+    /* ═══════════════════════════════════════
+   TETHER — end.css
+═══════════════════════════════════════ */
+
+/* ── HERO ── */
+.hero {
+  padding: 64px 28px 36px;
+  text-align: center;
+  animation: up 0.55s ease both;
+}
+
+.end-emblem {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--plum-bg);
+  border: 1px solid var(--plum-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+h1 em { font-style: italic; color: var(--plum); }
+
+.hero-sub {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ── STATS STRIP ── */
+.stats {
+  display: flex;
+  gap: 10px;
+  padding: 0 28px;
+  margin-bottom: 30px;
+  animation: up 0.55s 0.08s ease both;
+}
+
+.stat {
+  flex: 1;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* ── SECTION ANIMATION ── */
+.section { animation: up 0.55s 0.14s ease both; }
+
+/* ── KEEPSAKE CARD ── */
+.keepsake {
+  background: #FFF9C4;
+  border-left: 4px solid #E8C800;
+  border-radius: 3px 18px 18px 3px;
+  padding: 20px 20px 22px;
+}
+
+.keepsake-title {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7A6A00;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.keepsake p {
+  font-size: 14px;
+  color: #3D3500;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ── LEVEL SUMMARY ROWS ── */
+.level-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 13px 16px;
+  margin-bottom: 8px;
+}
+
+.level-row:last-child { margin-bottom: 0; }
+
+.lrow-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.lrow-name {
+  flex: 1;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+.lrow-count {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ── REFLECTION PROMPTS ── */
+.prompts { display: flex; flex-direction: column; gap: 9px; }
+
+.prompt-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+}
+
+.prompt-icon { font-size: 17px; flex-shrink: 0; line-height: 1.3; }
+
+.prompt-text {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.prompt-text strong { color: var(--ink); font-weight: 500; }
+
+/* ── CTA ── */
+.cta-wrap {
+  padding: 0 28px 56px;
+  animation: up 0.55s 0.2s ease both;
+}
+
+.cta-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.btn-again {
+  width: 100%;
+  padding: 17px;
+  background: var(--plum);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-pill);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-again:active { transform: scale(0.98); opacity: 0.9; }
+
+.btn-home {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-home:active { background: rgba(28, 24, 20, 0.04); }

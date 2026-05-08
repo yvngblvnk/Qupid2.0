@@ -1,0 +1,116 @@
+/* ═══════════════════════════════════════
+   QUPID — shared.css
+   Variables · Reset · Curtain · Common
+═══════════════════════════════════════ */
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Core palette */
+  --cream:        #FAF7F2;
+  --cream-dark:   #F0EBE1;
+  --ink:          #1C1814;
+  --ink-soft:     #5C5248;
+  --ink-muted:    #9C9089;
+
+  /* Casual — grey */
+  --grey-bg:      #F2F1EE;
+  --grey-dot:     #B8B6B1;
+  --grey-border:  #D0CEC9;
+  --grey-text:    #3A3835;
+
+  /* Personal — blue */
+  --blue-bg:      #E6F3FB;
+  --blue-dot:     #7AB3D0;
+  --blue-border:  #A8CDE0;
+  --blue-text:    #18425E;
+
+  /* Very personal — plum */
+  --plum:         #7A5C7E;
+  --plum-bg:      #EDE5EF;
+  --plum-border:  #B094B4;
+  --plum-text:    #3D1F42;
+
+  /* Active level (set by JS in session) */
+  --lvl-bg:     var(--grey-bg);
+  --lvl-dot:    var(--grey-dot);
+  --lvl-border: var(--grey-border);
+  --lvl-text:   var(--grey-text);
+
+  /* Borders */
+  --border:      rgba(28, 24, 20, 0.09);
+  --border-soft: rgba(28, 24, 20, 0.06);
+
+  /* Radii */
+  --r-card: 20px;
+  --r-pill: 100px;
+}
+
+/* ── BASE ── */
+html { height: 100%; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── PAGE TRANSITION CURTAIN ── */
+#curtain {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 1000;
+  pointer-events: none;
+  animation: curtainOut 0.4s ease forwards;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes curtainOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes curtainIn  { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   }
+  50%       { opacity: 0.5; }
+}
+
+/* ── SHARED COMPONENTS ── */
+
+/* Section label — used on every page */
+.sec-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 13px;
+}
+
+/* Horizontal rule — instructions + end */
+.divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 0 28px 28px;
+}
+
+/* Generic section wrapper */
+.section {
+  padding: 0 28px;
+  margin-bottom: 30px;
+}

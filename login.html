@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Qupid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <div id="curtain"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="wordmark">Qupid</span>
+    <p class="tagline">A quiet space for two people to get a little closer — one honest answer at a time.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-area">
+    <p class="sec-label">Who's here today?</p>
+
+    <div class="name-pair">
+      <div class="name-field">
+        <div class="field-icon p1" aria-hidden="true">🗒️</div>
+        <div class="field-inner">
+          <label class="field-label" for="name1">First person</label>
+          <input class="name-input" id="name1" type="text" placeholder="Your name" autocomplete="off" maxlength="30" />
+        </div>
+      </div>
+
+      <div class="name-field">
+        <div class="field-icon p2" aria-hidden="true">🗒️</div>
+        <div class="field-inner">
+          <label class="field-label" for="name2">Second person</label>
+          <input class="name-input" id="name2" type="text" placeholder="Their name" autocomplete="off" maxlength="30" />
+        </div>
+      </div>
+    </div>
+
+    <div class="how-banner" role="link" onclick="navigate('instructions.html')" tabindex="0">
+      <span class="how-icon" aria-hidden="true">📖</span>
+      <div class="how-text">
+        <strong>First time? Read how it works</strong>
+        <span>Takes about 2 minutes — grab sticky notes first.</span>
+      </div>
+      <span class="how-arrow" aria-hidden="true">→</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <button class="btn-start" id="btn-start" disabled onclick="handleStart()">
+      Let's begin ✦
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const n1  = document.getElementById('name1');
+    const n2  = document.getElementById('name2');
+    const btn = document.getElementById('btn-start');
+
+    function checkReady() {
+      const ready = n1.value.trim().length > 0 && n2.value.trim().length > 0;
+      btn.disabled = !ready;
+      btn.classList.toggle('active', ready);
+    }
+
+    n1.addEventListener('input', checkReady);
+    n2.addEventListener('input', checkReady);
+
+    function handleStart() {
+      const p1 = n1.value.trim();
+      const p2 = n2.value.trim();
+      if (!p1 || !p2) return;
+      sessionStorage.setItem('Qupid_p1', p1);
+      sessionStorage.setItem('Qupid_p2', p2);
+      btn.textContent = 'Getting ready…';
+      btn.disabled = true;
+      setTimeout(() => navigate('instructions.html'), 300);
+    }
+
+    [n1, n2].forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !btn.disabled) handleStart();
+      });
+    });
+  </script>
+
+</body>
+</html>

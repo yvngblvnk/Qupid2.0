@@ -1,0 +1,365 @@
+   /* ═══════════════════════════════════════
+   TETHER — instructions.css
+═══════════════════════════════════════ */
+
+/* ── SCROLL PROGRESS BAR ── */
+#prog {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--plum);
+  width: 0%;
+  z-index: 99;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.08s linear;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 56px 28px 32px;
+  animation: up 0.5s ease both;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.dots { display: flex; gap: 5px; }
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.d-grey { background: var(--grey-dot); }
+.d-blue { background: var(--blue-dot); }
+.d-plum { background: var(--plum);     }
+
+.eyebrow span {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+h1 em { font-style: italic; color: var(--plum); }
+
+.hero p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ── WHAT YOU NEED BANNER ── */
+.need-banner {
+  margin: 4px 28px 28px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: up 0.5s 0.06s ease both;
+}
+
+.need-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+
+.need-text {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.need-text strong { color: var(--ink); font-weight: 500; }
+
+/* ── SECTION ANIMATION ── */
+.section { animation: up 0.5s 0.12s ease both; }
+
+/* ── STEP CARDS ── */
+.steps { display: flex; flex-direction: column; }
+
+.step-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-card);
+  padding: 18px 20px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* connector line between steps */
+.step-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 37px;
+  bottom: -10px;
+  width: 1.5px;
+  height: 10px;
+  background: var(--border);
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.step-body { flex: 1; }
+
+.step-title {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── STICKY NOTE PAIR (inside step card) ── */
+.note-pair {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sticky {
+  flex: 1;
+  border-radius: 3px 12px 12px 3px;
+  padding: 12px 13px;
+  border-left: 3.5px solid;
+}
+
+.sticky.s1 { background: #FFF9C4; border-color: #E8C800; }
+.sticky.s2 { background: #FFE8C4; border-color: #E89000; }
+
+.sticky-who {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.sticky.s1 .sticky-who { color: #7A6A00; }
+.sticky.s2 .sticky-who { color: #7A4800; }
+
+.sticky-content {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.sticky.s1 .sticky-content { color: #3D3500; }
+.sticky.s2 .sticky-content { color: #3D2000; }
+
+.note-mid {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  font-size: 17px;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+}
+
+/* ── TIMER DEMO (inside step card) ── */
+.timer-demo {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.timer-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ── LEVEL CARDS ── */
+.levels { display: flex; flex-direction: column; gap: 9px; }
+
+.level-card {
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--border-soft);
+}
+
+.level-card.lg { background: var(--grey-bg); }
+.level-card.lb { background: var(--blue-bg); }
+.level-card.lp { background: var(--plum-bg); }
+
+.level-swatch {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+}
+
+.ls-grey { background: var(--grey-dot);  }
+.ls-blue { background: var(--blue-dot);  }
+.ls-plum { background: var(--plum);      }
+
+.level-name { font-size: 13.5px; font-weight: 500; margin-bottom: 3px; }
+.level-name.ng { color: var(--grey-text); }
+.level-name.nb { color: var(--blue-text); }
+.level-name.np { color: var(--plum-text); }
+
+.level-desc { font-size: 12px; line-height: 1.5; font-weight: 300; }
+.level-desc.dg { color: #6A6764; }
+.level-desc.db { color: #3A6885; }
+.level-desc.dp { color: #5A3A5E; }
+
+/* ── TIPS ── */
+.tips { display: flex; flex-direction: column; gap: 9px; }
+
+.tip {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.tip-icon { font-size: 17px; flex-shrink: 0; line-height: 1.35; }
+
+.tip-text {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.tip-text strong { color: var(--ink); font-weight: 500; }
+
+/* ── CTA ── */
+.cta-wrap {
+  padding: 0 28px 52px;
+  animation: up 0.5s 0.18s ease both;
+}
+
+.cta-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Checkbox hidden, label acts as the toggle */
+input[type="checkbox"] { display: none; }
+
+.check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.15s;
+}
+
+.check-label:active { background: var(--cream-dark); }
+
+.check-box {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  margin-top: 1px;
+}
+
+.check-box svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.15s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#agree:checked ~ .check-label .check-box {
+  background: var(--plum);
+  border-color: var(--plum);
+}
+
+#agree:checked ~ .check-label .check-box svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.check-text {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.check-text strong { color: var(--ink); font-weight: 500; }
+
+.cta-btn {
+  width: 100%;
+  padding: 17px 24px;
+  border: none;
+  border-radius: var(--r-pill);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--ink);
+  color: var(--cream);
+  opacity: 0.38;
+  transition: opacity 0.2s, background 0.2s, transform 0.15s;
+}
+
+.cta-btn.active { opacity: 1; background: var(--plum); }
+.cta-btn:active  { transform: scale(0.98); }

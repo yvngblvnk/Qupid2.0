@@ -1,4 +1,4 @@
-# Qupid2.0
+# Qupid
 
 > *Pen, paper, and presence.*
 
@@ -124,6 +124,3 @@ The phone vibration on timer end uses the Vibration API — supported on Android
 ---
 
 *Built with HTML, CSS, and JavaScript. No frameworks. No backend. No tracking.*
-
-
-
