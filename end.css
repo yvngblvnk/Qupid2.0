@@ -1,8 +1,7 @@
-    /* ═══════════════════════════════════════
-   TETHER — end.css
+/* ═══════════════════════════════════════
+   QUPID — end.css
 ═══════════════════════════════════════ */
 
-/* ── HERO ── */
 .hero {
   padding: 64px 28px 36px;
   text-align: center;
@@ -21,6 +20,7 @@
   margin: 0 auto 24px;
   font-size: 30px;
   line-height: 1;
+  transition: background 0.3s;
 }
 
 h1 {
@@ -28,7 +28,6 @@ h1 {
   font-size: 34px;
   line-height: 1.2;
   margin-bottom: 14px;
-  color: var(--ink);
 }
 
 h1 em { font-style: italic; color: var(--plum); }
@@ -40,7 +39,6 @@ h1 em { font-style: italic; color: var(--plum); }
   font-weight: 300;
 }
 
-/* ── STATS STRIP ── */
 .stats {
   display: flex;
   gap: 10px;
@@ -51,11 +49,12 @@ h1 em { font-style: italic; color: var(--plum); }
 
 .stat {
   flex: 1;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 16px 12px;
   text-align: center;
+  transition: background 0.3s;
 }
 
 .stat-num {
@@ -74,43 +73,44 @@ h1 em { font-style: italic; color: var(--plum); }
   font-weight: 500;
 }
 
-/* ── SECTION ANIMATION ── */
 .section { animation: up 0.55s 0.14s ease both; }
 
-/* ── KEEPSAKE CARD ── */
+/* ── KEEPSAKE ── */
 .keepsake {
-  background: #FFF9C4;
-  border-left: 4px solid #E8C800;
+  background: var(--note1-bg);
+  border-left: 4px solid var(--note1-border);
   border-radius: 3px 18px 18px 3px;
   padding: 20px 20px 22px;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .keepsake-title {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7A6A00;
+  color: var(--note1-who);
   font-weight: 500;
   margin-bottom: 10px;
 }
 
 .keepsake p {
   font-size: 14px;
-  color: #3D3500;
+  color: var(--note1-text);
   line-height: 1.65;
   font-weight: 300;
 }
 
-/* ── LEVEL SUMMARY ROWS ── */
+/* ── LEVEL ROWS ── */
 .level-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 13px 16px;
   margin-bottom: 8px;
+  transition: background 0.3s;
 }
 
 .level-row:last-child { margin-bottom: 0; }
@@ -135,17 +135,18 @@ h1 em { font-style: italic; color: var(--plum); }
   font-weight: 500;
 }
 
-/* ── REFLECTION PROMPTS ── */
+/* ── PROMPTS ── */
 .prompts { display: flex; flex-direction: column; gap: 9px; }
 
 .prompt-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 16px 18px;
   display: flex;
   gap: 13px;
   align-items: flex-start;
+  transition: background 0.3s;
 }
 
 .prompt-icon { font-size: 17px; flex-shrink: 0; line-height: 1.3; }
@@ -178,7 +179,7 @@ h1 em { font-style: italic; color: var(--plum); }
   width: 100%;
   padding: 17px;
   background: var(--plum);
-  color: #fff;
+  color: var(--cream);
   border: none;
   border-radius: var(--r-pill);
   font-family: 'DM Sans', sans-serif;
@@ -186,7 +187,7 @@ h1 em { font-style: italic; color: var(--plum); }
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 10px;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: opacity 0.2s, transform 0.15s, background 0.3s;
 }
 
 .btn-again:active { transform: scale(0.98); opacity: 0.9; }
@@ -205,4 +206,4 @@ h1 em { font-style: italic; color: var(--plum); }
   transition: background 0.15s;
 }
 
-.btn-home:active { background: rgba(28, 24, 20, 0.04); }
+.btn-home:active { background: var(--cream-dark); }
