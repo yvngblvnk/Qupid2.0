@@ -1,6 +1,8 @@
-   /* ═══════════════════════════════════════
-   TETHER — session.css
+  /* ═══════════════════════════════════════
+   QUPID — session.css
 ═══════════════════════════════════════ */
+
+html, body { height: 100%; }
 
 body {
   display: flex;
@@ -8,9 +10,6 @@ body {
   height: 100%;
 }
 
-html, body { height: 100%; }
-
-/* ── HEADER ── */
 header {
   padding: 52px 24px 16px;
   display: flex;
@@ -69,7 +68,6 @@ header {
   border: 1px solid var(--lvl-border);
   border-radius: 24px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 36px 28px;
@@ -80,7 +78,6 @@ header {
   min-height: 240px;
 }
 
-/* Decorative opening quote mark */
 .q-card::before {
   content: '\201C';
   position: absolute;
@@ -91,8 +88,8 @@ header {
   color: var(--lvl-border);
   line-height: 1;
   pointer-events: none;
-  transition: color 0.4s;
   opacity: 0.5;
+  transition: color 0.4s;
 }
 
 .q-text {
@@ -103,7 +100,7 @@ header {
   font-style: italic;
   position: relative;
   z-index: 1;
-  transition: color 0.4s, opacity 0.35s;
+  transition: color 0.4s, opacity 0.35s, transform 0.35s;
 }
 
 .q-text.fade { opacity: 0; transform: translateY(6px); }
@@ -120,11 +117,12 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #fff;
-  border: 1px solid rgba(28, 24, 20, 0.07);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 12px 16px;
   margin-bottom: 14px;
+  transition: background 0.3s;
 }
 
 .write-hint-icon { font-size: 18px; flex-shrink: 0; }
@@ -150,7 +148,7 @@ header {
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 12px;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.3s, color 0.3s, transform 0.15s;
 }
 
 .btn-done:active { transform: scale(0.98); }
@@ -169,7 +167,7 @@ header {
   transition: background 0.15s;
 }
 
-.btn-skip:active { background: rgba(28, 24, 20, 0.04); }
+.btn-skip:active { background: var(--cream-dark); }
 
 /* ── STATE B — DISCUSSING ── */
 #state-discussing {
@@ -180,7 +178,6 @@ header {
   align-items: center;
 }
 
-/* SVG Timer Ring */
 .timer-wrap {
   position: relative;
   width: 160px;
@@ -196,7 +193,7 @@ header {
 
 .timer-bg-ring {
   fill: none;
-  stroke: rgba(28, 24, 20, 0.07);
+  stroke: var(--border);
   stroke-width: 5;
 }
 
@@ -223,6 +220,7 @@ header {
   color: var(--ink);
   letter-spacing: -0.01em;
   line-height: 1;
+  transition: color 0.3s;
 }
 
 .timer-digits.done {
@@ -259,7 +257,7 @@ header {
   width: 100%;
   padding: 17px;
   background: var(--plum);
-  color: #fff;
+  color: var(--cream);
   border: none;
   border-radius: var(--r-pill);
   font-family: 'DM Sans', sans-serif;
@@ -286,4 +284,4 @@ header {
   transition: background 0.15s;
 }
 
-.btn-more:active { background: rgba(28, 24, 20, 0.04); }
+.btn-more:active { background: var(--cream-dark); }
