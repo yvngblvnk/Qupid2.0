@@ -57,12 +57,12 @@
 
 /* ── DESIGN TOKENS — DARK ── */
 [data-theme="dark"] {
-  --cream:        #16130F;
-  --cream-dark:   #1E1A14;
+  --cream:        #000000;
+  --cream-dark:   #000000;
   --ink:          #F0EBE1;
   --ink-soft:     #A8998A;
   --ink-muted:    #6A5D50;
-  --surface:      #221E18;
+  --surface:      #080706;
 
   --grey-bg:      #1E1C18;
   --grey-dot:     #706E69;
