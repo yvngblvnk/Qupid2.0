@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#FAF7F2" />
   <title>How It Works — Qupid</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
@@ -13,7 +17,6 @@
   <div id="curtain"></div>
   <div id="prog"></div>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="eyebrow">
       <div class="dots" aria-hidden="true">
@@ -27,13 +30,11 @@
     <p>Qupid gives you the questions. You bring the sticky notes, a pen, and each other. The rest happens offline — in real life, between real people.</p>
   </div>
 
-  <!-- WHAT YOU NEED -->
   <div class="need-banner" role="note">
     <div class="need-icon" aria-hidden="true">🗒️</div>
     <p class="need-text">Before you start, grab <strong>sticky notes</strong> and a <strong>pen or two.</strong> The phone shows the questions — you answer them by hand, together.</p>
   </div>
 
-  <!-- STEPS -->
   <div class="section">
     <p class="sec-label">The flow</p>
     <div class="steps">
@@ -42,7 +43,7 @@
         <div class="step-num">1</div>
         <div class="step-body">
           <p class="step-title">A question appears on screen</p>
-          <p class="step-desc">Both of you read the question together. The card's colour shows which level it is — casual, personal, or very personal.</p>
+          <p class="step-desc">Both of you read it together. The card's colour shows which level it is — casual, personal, or very personal.</p>
         </div>
       </div>
 
@@ -69,7 +70,7 @@
         <div class="step-num">3</div>
         <div class="step-body">
           <p class="step-title">Swap notes — read, don't react yet</p>
-          <p class="step-desc">Hand your sticky note to your partner and take theirs. Read it slowly. Sit with it for a moment before you speak.</p>
+          <p class="step-desc">Hand your sticky note to your partner and take theirs. Read it slowly. Sit with it before you speak.</p>
         </div>
       </div>
 
@@ -77,7 +78,7 @@
         <div class="step-num">4</div>
         <div class="step-body">
           <p class="step-title">Pick up the phone — start the timer</p>
-          <p class="step-desc">Tap "Start discussion" and talk about what you both wrote. The timer keeps the conversation focused — when it ends, the next question is up.</p>
+          <p class="step-desc">Tap "Start discussion" and talk about what you both wrote. When the timer ends, a gentle chime plays and the next question is ready.</p>
           <div class="timer-demo" role="img" aria-label="Discussion timer at 2 minutes 34 seconds">
             <svg width="88" height="88" viewBox="0 0 88 88">
               <circle cx="44" cy="44" r="36" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/>
@@ -106,7 +107,6 @@
 
   <div class="divider"></div>
 
-  <!-- LEVEL CARDS -->
   <div class="section">
     <p class="sec-label">Question levels</p>
     <div class="levels">
@@ -139,7 +139,6 @@
 
   <div class="divider"></div>
 
-  <!-- TIPS -->
   <div class="section">
     <p class="sec-label">Ground rules</p>
     <div class="tips">
@@ -164,7 +163,6 @@
 
   <div class="divider"></div>
 
-  <!-- CTA -->
   <div class="cta-wrap">
     <p class="cta-note">Make sure you both have sticky notes and a pen before you begin.</p>
 
@@ -183,9 +181,18 @@
     </button>
   </div>
 
+  <!-- Controls: fullscreen + dark mode -->
+  <div class="controls">
+    <button class="ctrl-btn" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+      <span id="fs-icon">⛶</span>
+    </button>
+    <button class="ctrl-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <span id="theme-icon">🌙</span>
+    </button>
+  </div>
+
   <script src="app.js"></script>
   <script>
-    // Scroll progress bar
     window.addEventListener('scroll', () => {
       const d = document.documentElement;
       document.getElementById('prog').style.width =
