@@ -6,46 +6,92 @@
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── DESIGN TOKENS ── */
+/* ── DESIGN TOKENS — LIGHT ── */
 :root {
-  /* Core palette */
   --cream:        #FAF7F2;
   --cream-dark:   #F0EBE1;
   --ink:          #1C1814;
   --ink-soft:     #5C5248;
   --ink-muted:    #9C9089;
+  --surface:      #ffffff;
 
-  /* Casual — grey */
   --grey-bg:      #F2F1EE;
   --grey-dot:     #B8B6B1;
   --grey-border:  #D0CEC9;
   --grey-text:    #3A3835;
 
-  /* Personal — blue */
   --blue-bg:      #E6F3FB;
   --blue-dot:     #7AB3D0;
   --blue-border:  #A8CDE0;
   --blue-text:    #18425E;
 
-  /* Very personal — plum */
   --plum:         #7A5C7E;
   --plum-bg:      #EDE5EF;
   --plum-border:  #B094B4;
   --plum-text:    #3D1F42;
 
-  /* Active level (set by JS in session) */
   --lvl-bg:     var(--grey-bg);
   --lvl-dot:    var(--grey-dot);
   --lvl-border: var(--grey-border);
   --lvl-text:   var(--grey-text);
 
-  /* Borders */
   --border:      rgba(28, 24, 20, 0.09);
   --border-soft: rgba(28, 24, 20, 0.06);
 
-  /* Radii */
   --r-card: 20px;
   --r-pill: 100px;
+
+  /* Sticky note colours */
+  --note1-bg:     #FFF9C4;
+  --note1-border: #E8C800;
+  --note1-who:    #7A6A00;
+  --note1-text:   #3D3500;
+  --note2-bg:     #FFE8C4;
+  --note2-border: #E89000;
+  --note2-who:    #7A4800;
+  --note2-text:   #3D2000;
+
+  /* Timer demo bg (always dark regardless of mode) */
+  --timer-demo-bg: #1C1814;
+}
+
+/* ── DESIGN TOKENS — DARK ── */
+[data-theme="dark"] {
+  --cream:        #16130F;
+  --cream-dark:   #1E1A14;
+  --ink:          #F0EBE1;
+  --ink-soft:     #A8998A;
+  --ink-muted:    #6A5D50;
+  --surface:      #221E18;
+
+  --grey-bg:      #1E1C18;
+  --grey-dot:     #706E69;
+  --grey-border:  #2C2A26;
+  --grey-text:    #C4C2BD;
+
+  --blue-bg:      #111C24;
+  --blue-dot:     #4A8CAE;
+  --blue-border:  #1C3040;
+  --blue-text:    #8BBCD8;
+
+  --plum:         #9B7AA0;
+  --plum-bg:      #1A1020;
+  --plum-border:  #3A2842;
+  --plum-text:    #B094B4;
+
+  --border:      rgba(240, 235, 225, 0.1);
+  --border-soft: rgba(240, 235, 225, 0.06);
+
+  --note1-bg:     #2A2400;
+  --note1-border: #5A4800;
+  --note1-who:    #A89000;
+  --note1-text:   #C4B040;
+  --note2-bg:     #2A1800;
+  --note2-border: #5A3000;
+  --note2-who:    #A86000;
+  --note2-text:   #C48040;
+
+  --timer-demo-bg: #0E0C08;
 }
 
 /* ── BASE ── */
@@ -59,9 +105,10 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* ── PAGE TRANSITION CURTAIN ── */
+/* ── CURTAIN ── */
 #curtain {
   position: fixed;
   inset: 0;
@@ -71,28 +118,47 @@ body {
   animation: curtainOut 0.4s ease forwards;
 }
 
+/* ── CONTROL CLUSTER (theme + fullscreen) ── */
+.controls {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+}
+
+.ctrl-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, border-color 0.3s, transform 0.15s, box-shadow 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ctrl-btn:active { transform: scale(0.88); }
+
+[data-theme="dark"] .ctrl-btn {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
 /* ── KEYFRAMES ── */
 @keyframes curtainOut { from { opacity: 1; } to { opacity: 0; } }
 @keyframes curtainIn  { from { opacity: 0; } to { opacity: 1; } }
-
-@keyframes up {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0);    }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0);    }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1;   }
-  50%       { opacity: 0.5; }
-}
+@keyframes up    { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn{ from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
 
 /* ── SHARED COMPONENTS ── */
-
-/* Section label — used on every page */
 .sec-label {
   font-size: 10px;
   letter-spacing: 0.15em;
@@ -102,14 +168,12 @@ body {
   margin-bottom: 13px;
 }
 
-/* Horizontal rule — instructions + end */
 .divider {
   height: 1px;
   background: var(--border-soft);
   margin: 0 28px 28px;
 }
 
-/* Generic section wrapper */
 .section {
   padding: 0 28px;
   margin-bottom: 30px;
