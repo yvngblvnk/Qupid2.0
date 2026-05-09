@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#FAF7F2" />
   <title>Session complete — Qupid</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
@@ -12,14 +16,12 @@
 
   <div id="curtain"></div>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="end-emblem" aria-hidden="true">🌿</div>
     <h1>That was<br><em>something.</em></h1>
     <p class="hero-sub">You showed up, wrote honestly, and listened to each other. That's all this ever asks.</p>
   </div>
 
-  <!-- STATS -->
   <div class="stats">
     <div class="stat">
       <p class="stat-num" id="stat-answered">—</p>
@@ -35,7 +37,6 @@
     </div>
   </div>
 
-  <!-- KEEPSAKE -->
   <div class="section">
     <p class="sec-label">Your keepsake</p>
     <div class="keepsake">
@@ -46,21 +47,20 @@
 
   <div class="divider"></div>
 
-  <!-- LEVEL SUMMARY -->
   <div class="section">
     <p class="sec-label">What you explored</p>
     <div class="level-row">
-      <div class="lrow-swatch" style="background:#B8B6B1"></div>
+      <div class="lrow-swatch" style="background:var(--grey-dot)"></div>
       <span class="lrow-name">Casual questions</span>
       <span class="lrow-count" id="count-casual">—</span>
     </div>
     <div class="level-row">
-      <div class="lrow-swatch" style="background:#7AB3D0"></div>
+      <div class="lrow-swatch" style="background:var(--blue-dot)"></div>
       <span class="lrow-name">Personal questions</span>
       <span class="lrow-count" id="count-personal">—</span>
     </div>
     <div class="level-row">
-      <div class="lrow-swatch" style="background:#7A5C7E"></div>
+      <div class="lrow-swatch" style="background:var(--plum)"></div>
       <span class="lrow-name">Very personal questions</span>
       <span class="lrow-count" id="count-vp">—</span>
     </div>
@@ -68,7 +68,6 @@
 
   <div class="divider"></div>
 
-  <!-- REFLECTION PROMPTS -->
   <div class="section">
     <p class="sec-label">Before you go</p>
     <div class="prompts">
@@ -82,24 +81,33 @@
       </div>
       <div class="prompt-card">
         <div class="prompt-icon" aria-hidden="true">📝</div>
-        <p class="prompt-text"><strong>Pick one note each</strong> to keep in your wallet or somewhere you'll see it again.</p>
+        <p class="prompt-text"><strong>Pick one note each</strong> to keep somewhere you'll see it again.</p>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- CTA -->
   <div class="cta-wrap">
     <p class="cta-note">Whenever you're ready to go deeper — Qupid will be here.</p>
     <button class="btn-again" onclick="playAgain()">Play another round ✦</button>
     <button class="btn-home"  onclick="goHome()">Back to the beginning</button>
   </div>
 
+  <!-- Controls: fullscreen + dark mode -->
+  <div class="controls">
+    <button class="ctrl-btn" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+      <span id="fs-icon">⛶</span>
+    </button>
+    <button class="ctrl-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <span id="theme-icon">🌙</span>
+    </button>
+  </div>
+
   <script src="app.js"></script>
   <script>
-    const answered = parseInt(sessionStorage.getItem('Qupid_answered') || '0', 10);
-    const counts   = JSON.parse(sessionStorage.getItem('Qupid_level_counts') || '{"casual":0,"personal":0,"veryPersonal":0}');
+    const answered = parseInt(sessionStorage.getItem('qupid_answered') || '0', 10);
+    const counts   = JSON.parse(sessionStorage.getItem('qupid_level_counts') || '{"casual":0,"personal":0,"veryPersonal":0}');
 
     document.getElementById('stat-answered').textContent  = answered;
     document.getElementById('stat-notes').textContent     = answered * 2;
@@ -113,14 +121,12 @@
       : Math.floor(estMins / 60) + 'h ' + (estMins % 60) + 'm';
 
     function playAgain() {
-      sessionStorage.removeItem('Qupid_answered');
-      sessionStorage.removeItem('Qupid_level_counts');
+      sessionStorage.removeItem('qupid_answered');
+      sessionStorage.removeItem('qupid_level_counts');
       navigate('session.html');
     }
 
-    function goHome() {
-      navigate('login.html');
-    }
+    function goHome() { navigate('login.html'); }
   </script>
 
 </body>
